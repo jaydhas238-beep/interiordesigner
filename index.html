@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interior Designer | Interior • Architecture • Construction</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+:root{
+  --dark:#11100e;
+  --cream:#f4efe7;
+  --sand:#c7a77a;
+  --brown:#5c4938;
+  --grey:#777;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--dark);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:#11100e;
+  color:#f4efe7;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:46px;
+  animation:hideLoader 1.8s forwards;
+}
+@keyframes hideLoader{
+  0%,75%{opacity:1;visibility:visible}
+  100%{opacity:0;visibility:hidden}
+}
+
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:24px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:999;
+  background:rgba(244,239,231,.76);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+.logo span{
+  color:var(--sand);
+}
+.nav-links{
+  display:flex;
+  gap:30px;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.nav-links a{
+  position:relative;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:0;
+  height:1px;
+  background:var(--sand);
+  transition:.35s;
+}
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  padding:130px 7% 70px;
+  gap:50px;
+  align-items:center;
+}
+.hero-small{
+  text-transform:uppercase;
+  color:var(--brown);
+  letter-spacing:3px;
+  font-size:13px;
+  margin-bottom:25px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:82px;
+  line-height:.95;
+  font-weight:700;
+  margin-bottom:28px;
+}
+.hero h1 span{
+  color:var(--sand);
+  font-style:italic;
+}
+.hero p{
+  max-width:590px;
+  font-size:17px;
+  line-height:1.9;
+  color:#5f5b55;
+  margin-bottom:35px;
+}
+.btn-wrap{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:15px 28px;
+  border-radius:0;
+  border:1px solid var(--dark);
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  transition:.4s;
+  position:relative;
+  overflow:hidden;
+}
+.btn-dark{
+  background:var(--dark);
+  color:var(--cream);
+}
+.btn:hover{
+  transform:translateY(-5px);
+  background:var(--sand);
+  border-color:var(--sand);
+  color:white;
+}
+.hero-img{
+  position:relative;
+}
+.hero-img img{
+  width:100%;
+  height:620px;
+  object-fit:cover;
+  filter:contrast(1.04);
+}
+.hero-card{
+  position:absolute;
+  bottom:35px;
+  left:-45px;
+  background:rgba(17,16,14,.92);
+  color:white;
+  padding:28px;
+  width:260px;
+}
+.hero-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;
+  color:var(--sand);
+}
+.hero-card p{
+  color:#ddd;
+  font-size:13px;
+  line-height:1.6;
+  margin:0;
+}
+
+.marquee{
+  background:var(--dark);
+  color:var(--cream);
+  overflow:hidden;
+  white-space:nowrap;
+  padding:22px 0;
+}
+.marquee span{
+  display:inline-block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  animation:marquee 22s linear infinite;
+}
+@keyframes marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+section{
+  padding:95px 7%;
+}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  align-items:flex-end;
+  margin-bottom:55px;
+}
+.section-head h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:58px;
+  line-height:1;
+}
+.section-head p{
+  max-width:430px;
+  color:#666;
+  line-height:1.8;
+}
+
+.services{
+  background:#fffaf3;
+}
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(0,0,0,.12);
+}
+.service{
+  padding:38px 28px;
+  border-right:1px solid rgba(0,0,0,.12);
+  border-bottom:1px solid rgba(0,0,0,.12);
+  min-height:260px;
+  transition:.4s;
+}
+.service:hover{
+  background:var(--dark);
+  color:white;
+}
+.service:hover p{
+  color:#ddd;
+}
+.service span{
+  color:var(--sand);
+  font-size:14px;
+}
+.service h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:34px;
+  margin:22px 0 15px;
+}
+.service p{
+  color:#666;
+  line-height:1.8;
+}
+
+.projects{
+  background:var(--cream);
+}
+.project-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:22px;
+}
+.project{
+  position:relative;
+  height:460px;
+  overflow:hidden;
+}
+.project:nth-child(2){
+  margin-top:60px;
+}
+.project img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:1s;
+}
+.project:hover img{
+  transform:scale(1.12);
+}
+.project-info{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding:28px;
+  color:white;
+  background:linear-gradient(transparent,rgba(0,0,0,.8));
+  transform:translateY(20px);
+  opacity:0;
+  transition:.5s;
+}
+.project:hover .project-info{
+  transform:translateY(0);
+  opacity:1;
+}
+.project-info h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+}
+
+.about{
+  background:var(--dark);
+  color:var(--cream);
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:60px;
+  align-items:center;
+}
+.about img{
+  width:100%;
+  height:620px;
+  object-fit:cover;
+}
+.about h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:60px;
+  line-height:1;
+  margin-bottom:25px;
+}
+.about p{
+  color:#d6d0c6;
+  line-height:1.9;
+  margin-bottom:20px;
+}
+.about-list{
+  margin-top:35px;
+}
+.about-list div{
+  padding:18px 0;
+  border-bottom:1px solid rgba(255,255,255,.15);
+  display:flex;
+  justify-content:space-between;
+  color:#eee;
+}
+.about-list span{
+  color:var(--sand);
+}
+
+.process{
+  background:#fffaf3;
+}
+.timeline{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.step{
+  padding:35px;
+  border:1px solid rgba(0,0,0,.1);
+  background:var(--cream);
+  transition:.4s;
+}
+.step:hover{
+  background:#fff;
+  transform:translateY(-10px);
+}
+.step b{
+  color:var(--sand);
+}
+.step h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  margin:22px 0 12px;
+}
+.step p{
+  color:#666;
+  line-height:1.8;
+}
+
+.reviews{
+  background:var(--cream);
+}
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.review{
+  background:white;
+  padding:35px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 18px 50px rgba(0,0,0,.05);
+}
+.stars{
+  color:#c7a77a;
+  margin-bottom:18px;
+}
+.review p{
+  color:#5f5b55;
+  line-height:1.8;
+  margin-bottom:22px;
+}
+.review h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:25px;
+}
+
+.contact{
+  background:
+  linear-gradient(rgba(17,16,14,.72),rgba(17,16,14,.88)),
+  url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80");
+  background-size:cover;
+  background-position:center;
+  color:white;
+  text-align:center;
+}
+.contact h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:70px;
+  line-height:1;
+  margin-bottom:22px;
+}
+.contact p{
+  max-width:740px;
+  margin:0 auto 35px;
+  color:#e6ded2;
+  line-height:1.8;
+}
+.contact .btn{
+  border-color:white;
+  color:white;
+}
+.contact .btn-dark{
+  background:white;
+  color:var(--dark);
+}
+
+footer{
+  background:#0b0a09;
+  color:#aaa;
+  padding:35px 7%;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  font-size:14px;
+}
+
+.whatsapp{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  background:#1f7a4f;
+  color:white;
+  padding:15px 22px;
+  z-index:999;
+  font-weight:700;
+  box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:120px;
+  }
+  .hero h1{font-size:52px}
+  .hero-img img{height:460px}
+  .hero-card{
+    position:relative;
+    left:0;
+    bottom:0;
+    width:100%;
+  }
+  .section-head{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .service-grid,
+  .project-grid,
+  .timeline,
+  .review-grid,
+  .about{
+    grid-template-columns:1fr;
+  }
+  .project:nth-child(2){
+    margin-top:0;
+  }
+  .contact h2{font-size:48px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="loader">Interior Designer</div>
+
+<nav class="nav">
+  <div class="logo">House<span>That</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">Studio</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-text reveal">
+    <div class="hero-small">Interior • Architecture • Construction</div>
+    <h1>Designing Spaces That Feel <span>Timeless</span></h1>
+    <p>
+      Interior Designer creates thoughtful interiors, elegant architecture and reliable construction solutions for homes, offices and lifestyle spaces in Your City.
+    </p>
+    <div class="btn-wrap">
+      <a class="btn btn-dark" href="tel:7972219776">Call Now</a>
+      <a class="btn" href="https://wa.me/917972219776?text=Hello%20Interior Designer,%20I%20want%20to%20discuss%20an%20interior%20or%20architecture%20project." target="_blank">Start Project</a>
+    </div>
+  </div>
+
+  <div class="hero-img reveal">
+    <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=80" alt="Luxury Interior">
+    <div class="hero-card">
+      <h3>4.8★</h3>
+      <p>Rated for hassle-free service, detail-focused design and timely delivery.</p>
+    </div>
+  </div>
+</header>
+
+<div class="marquee">
+  <span>
+    Luxury Interiors • Architecture Planning • Construction Execution • Space Styling • Turnkey Projects • Luxury Interiors • Architecture Planning • Construction Execution •
+  </span>
+</div>
+
+<section class="services" id="services">
+  <div class="section-head reveal">
+    <h2>What We Design</h2>
+    <p>From concept to completion, every space is designed with function, comfort and refined aesthetics.</p>
+  </div>
+
+  <div class="service-grid">
+    <div class="service reveal">
+      <span>01</span>
+      <h3>Interior Design</h3>
+      <p>Premium home and office interiors with material selection, layouts, lighting and styling.</p>
+    </div>
+
+    <div class="service reveal">
+      <span>02</span>
+      <h3>Architecture</h3>
+      <p>Smart spatial planning, elegant elevations and practical design solutions for modern living.</p>
+    </div>
+
+    <div class="service reveal">
+      <span>03</span>
+      <h3>Construction</h3>
+      <p>Reliable execution support with quality-focused detailing and professional coordination.</p>
+    </div>
+
+    <div class="service reveal">
+      <span>04</span>
+      <h3>Renovation</h3>
+      <p>Transform old spaces into fresh, functional and premium environments.</p>
+    </div>
+
+    <div class="service reveal">
+      <span>05</span>
+      <h3>Space Planning</h3>
+      <p>Layouts that maximize comfort, storage, movement and visual balance.</p>
+    </div>
+
+    <div class="service reveal">
+      <span>06</span>
+      <h3>Turnkey Projects</h3>
+      <p>End-to-end project handling from design concept to final handover.</p>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="section-head reveal">
+    <h2>Signature Spaces</h2>
+    <p>A premium visual style for homes that feel personal, detailed and beautifully finished.</p>
+  </div>
+
+  <div class="project-grid">
+    <div class="project reveal">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80" alt="">
+      <div class="project-info">
+        <h3>Luxury Living</h3>
+        <p>Elegant textures and warm modern comfort.</p>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&w=1000&q=80" alt="">
+      <div class="project-info">
+        <h3>Modern Bedroom</h3>
+        <p>Calm, premium and detail-rich interiors.</p>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=1000&q=80" alt="">
+      <div class="project-info">
+        <h3>Architectural Finish</h3>
+        <p>Balanced forms with timeless material language.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <img class="reveal" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" alt="Architecture studio">
+
+  <div class="reveal">
+    <h2>Built Around Your Vision</h2>
+    <p>
+      Interior Designer is an interior, architecture and construction studio based in Dwarka, Your City.
+      The studio focuses on practical design, beautiful detailing and hassle-free project experiences.
+    </p>
+    <p>
+      Clients appreciate Interior Designer and the team for bringing their vision to life, staying open to feedback and delivering thoughtful design in a timely manner.
+    </p>
+
+    <div class="about-list">
+      <div><b>Location</b><span>Location, Area</span></div>
+      <div><b>Rating</b><span>4.8 Rating</span></div>
+      <div><b>Speciality</b><span>Interiors • Architecture • Construction</span></div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-head reveal">
+    <h2>Our Process</h2>
+    <p>A clear project journey so the client understands every stage from idea to execution.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="step reveal">
+      <b>01</b>
+      <h3>Consult</h3>
+      <p>We understand your space, lifestyle, budget and design expectations.</p>
+    </div>
+
+    <div class="step reveal">
+      <b>02</b>
+      <h3>Concept</h3>
+      <p>We create design direction, layouts, moodboard and material ideas.</p>
+    </div>
+
+    <div class="step reveal">
+      <b>03</b>
+      <h3>Design</h3>
+      <p>Detailed planning, styling, finishes and execution-ready decisions.</p>
+    </div>
+
+    <div class="step reveal">
+      <b>04</b>
+      <h3>Deliver</h3>
+      <p>Execution coordination and final space delivery with attention to detail.</p>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="section-head reveal">
+    <h2>Client Words</h2>
+    <p>Trusted for design ideas, detailing, feedback-friendly work and hassle-free service.</p>
+  </div>
+
+  <div class="review-grid">
+    <div class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>“Interior Designer has done a Good work. ”</p>
+      <h4>Customer</h4>
+    </div>
+
+    <div class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>“Amazing experience working with Interior Designer. ”</p>
+      <h4>Customer</h4>
+    </div>
+
+    <div class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>“Good to work with them</p>
+      <h4>Customer</h4>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="reveal">Let’s Design Your Space</h2>
+  <p class="reveal">
+    Visit Interior Designer at Location,Area, Your City, State.
+    Start your interior, architecture or construction project with a premium design consultation.
+  </p>
+
+  <a class="btn btn-dark reveal" href="tel:7972219776">Call 078210 75583</a>
+  <a class="btn reveal" href="https://wa.me/917972219776?text=Hello%20Interior Designer,%20I%20want%20to%20discuss%20an%20interior%20or%20architecture%20project." target="_blank">WhatsApp Now</a>
+  <a class="btn reveal" href="https://www.google.com/maps/search/?api=1&query=Interior Designer+Interior+Architecture+Construction+Dwarka+Your City" target="_blank">Get Directions</a>
+</section>
+
+<footer>
+  <p>© 2026 Interior Designer - Interior • Architecture • Construction</p>
+  <p>Designed for premium architecture presence</p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/917972219776?text=Hello%20Interior Designer,%20I%20want%20to%20discuss%20an%20interior%20or%20architecture%20project." target="_blank">
+  WhatsApp
+</a>
+
+<script>
+const revealElements = document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+  revealElements.forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 90){
+      el.classList.add("active");
+    }
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+const words = ["Timeless", "Elegant", "Functional", "Personal"];
+let index = 0;
+const changingWord = document.querySelector(".hero h1 span");
+
+setInterval(()=>{
+  index = (index + 1) % words.length;
+  changingWord.style.opacity = 0;
+  setTimeout(()=>{
+    changingWord.textContent = words[index];
+    changingWord.style.opacity = 1;
+  },300);
+},2500);
+</script>
+
+</body>
+</html>
